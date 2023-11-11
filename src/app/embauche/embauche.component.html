@@ -1,0 +1,14 @@
+<div class="card-container" *ngIf="personnes">
+  <div class="c" *ngFor="let personne of personnes">
+    <div class="card-body p-2">
+      <img
+        src="assets/images/{{personne.path|defaultImage}}"
+        alt="{{personne.name}}"
+        height="100px"
+        width="100px"
+        class="rounded-circle"
+      >
+      <p>{{personne.name}} {{personne.firstname}}</p>
+    </div>
+  </div>
+</div>
