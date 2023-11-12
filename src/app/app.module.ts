@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     ROUTING
   ],
   providers: [
+    AuthService,
     provideClientHydration()
   ],
   bootstrap: [AppComponent]
