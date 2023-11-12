@@ -12,6 +12,11 @@ import { EmbaucheComponent } from './embauche/embauche.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { CvPageComponent } from './cv-page/cv-page.component';
 import {ROUTING} from "./app.routes";
+import { AuthComponent } from './auth/auth.component';
+import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -22,10 +27,13 @@ import {ROUTING} from "./app.routes";
     CvItemComponent,
     DefaultImagePipe,
     EmbaucheComponent,
-    CvPageComponent
+    CvPageComponent,
+    AuthComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
     ROUTING

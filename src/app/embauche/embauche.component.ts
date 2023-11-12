@@ -9,6 +9,7 @@ import {EmbaucheService} from "../embauche.service";
 })
 export class EmbaucheComponent implements OnInit{
   personnes: Personne[]=[];
+  defaultImage: String = ""
   constructor(private embaucheService:EmbaucheService) {
   }
 
