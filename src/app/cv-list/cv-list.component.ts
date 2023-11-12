@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Personne} from "../model/Personne";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-cv-list',
@@ -7,7 +8,7 @@ import {Personne} from "../model/Personne";
   styleUrl: './cv-list.component.css'
 })
 export class CvListComponent implements OnInit{
-  @Input()personnes: Personne[] =[]
+  @Input()personnes: Personne[]|null=[];
   constructor() {
   }
 

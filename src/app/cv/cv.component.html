@@ -1,7 +1,7 @@
 
 <div class="row">
   <div class="col-md-6">
-    <app-cv-list [personnes]="personnes" (selectedPersonne)="selectPersonne($event)"></app-cv-list>
+    <app-cv-list [personnes]="personnes$|async" (selectedPersonne)="selectPersonne($event)"></app-cv-list>
   </div>
   <div class="col-md-6">
     <app-cv-detail *ngIf="selectedPersonne" [selectedPersonne]="selectedPersonne"></app-cv-detail>

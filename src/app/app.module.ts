@@ -9,6 +9,9 @@ import { CvListComponent } from './cv-list/cv-list.component';
 import { CvItemComponent } from './cv-item/cv-item.component';
 import { DefaultImagePipe } from './default-image.pipe';
 import { EmbaucheComponent } from './embauche/embauche.component';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import { CvPageComponent } from './cv-page/cv-page.component';
+import {ROUTING} from "./app.routes";
 
 @NgModule({
   declarations: [
@@ -18,11 +21,14 @@ import { EmbaucheComponent } from './embauche/embauche.component';
     CvListComponent,
     CvItemComponent,
     DefaultImagePipe,
-    EmbaucheComponent
+    EmbaucheComponent,
+    CvPageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    ROUTING
   ],
   providers: [
     provideClientHydration()
