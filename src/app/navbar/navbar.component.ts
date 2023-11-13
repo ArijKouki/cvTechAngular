@@ -8,10 +8,10 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
+  showModal = false;
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    // Charge l'état de l'utilisateur au chargement de la Navbar
     this.authService.loadUserState();
   }
 
@@ -21,5 +21,15 @@ export class NavbarComponent implements OnInit {
 
   logout(): void {
     this.authService.logout();
+    this.closeModal();
   }
+
+  openModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
+
 }

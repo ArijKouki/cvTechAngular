@@ -12,9 +12,10 @@
             name="email"
             class="form-control"
             [(ngModel)]="user.email"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
             required
             #email="ngModel"
-            [ngClass]="{ 'is-invalid': email.invalid && (email.dirty || email.touched) }"
+            [ngClass]="{ 'is-invalid': email.invalid && (email.dirty || email.touched)  }"
           />
           <div class="invalid-feedback">Please enter a valid email address.</div>
         </div>
