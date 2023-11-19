@@ -19,6 +19,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AuthService } from './services/auth.service';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
+import { MergeScanReduceComponent } from './merge-scan-reduce/merge-scan-reduce.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AutocompleteComponent } from './autocomplete/autocomplete.component';
     CvPageComponent,
     AuthComponent,
     NavbarComponent,
-    AutocompleteComponent
+    AutocompleteComponent,
+    MergeScanReduceComponent
   ],
   imports: [
     BrowserModule,

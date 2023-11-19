@@ -1,0 +1,27 @@
+<div class="mb-3">
+  <label for="input1">Input 1:</label>
+  <input type="number" id="input1" class="form-control mb-2" [formControl]="input1FormControl" />
+  <button class="btn btn-danger" (click)="terminateStream()">Terminate Stream 1</button>
+</div>
+
+<div class="mb-5">
+  <label for="input2">Input 2:</label>
+  <input type="number" id="input2" class="form-control mb-1" [formControl]="input1FormControl" />
+  <button class="btn btn-danger" (click)="terminateStream()">Terminate Stream 2</button>
+</div>
+
+
+<div >
+  <h5>Merge Result:</h5>
+  <p>{{ mergeResult }}</p>
+</div>
+
+<div >
+  <h5>Scan Results:</h5>
+  <p>{{ scanResult }}</p>
+</div>
+
+<div>
+  <h5>Reduce Result:</h5>
+  <p>{{ reduceResult }}</p>
+</div>
