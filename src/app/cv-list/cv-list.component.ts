@@ -23,4 +23,18 @@ export class CvListComponent implements OnInit{
    )
  }
 
+  getJuniors(): Personne[]|null {
+   if(this.personnes) {
+     return this.personnes.filter(personne => personne.age < 40);
+   }
+   return null
+  }
+
+  getSeniors(): Personne[]|null {
+    if(this.personnes) {
+      return this.personnes.filter(personne => personne.age >= 40);
+    }
+    return null
+  }
+
 }
