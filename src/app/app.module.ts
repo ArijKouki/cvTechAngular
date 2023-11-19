@@ -37,7 +37,9 @@ import { AuthService } from './services/auth.service';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    ROUTING
+    ROUTING,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     AuthService,

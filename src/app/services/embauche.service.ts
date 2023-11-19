@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Personne} from "../model/Personne";
+import {ToastrService} from "ngx-toastr";
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import {Personne} from "../model/Personne";
 export class EmbaucheService {
 
   private personnes: Personne[]=[];
-  constructor() { }
+  constructor(private toastr: ToastrService) { }
   getEmbauchees():Personne[]{
     return this.personnes;
   }
@@ -15,8 +16,9 @@ export class EmbaucheService {
     const index= this.personnes.indexOf(personne);
     if (index<0){
       this.personnes.push(personne);
-    }else {
-      alert(`${personne.name} est déjà embauchée!`)
+      this.toastr.success(`${personne.name} a été embauché(e)`, 'Embauche réussie');
+    } else {
+      this.toastr.warning(`${personne.name} est déjà embauché(e)`, 'Erreur d\'embauche');
     }
   }
 
