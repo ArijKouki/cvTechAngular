@@ -20,6 +20,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AuthService } from './services/auth.service';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { MergeScanReduceComponent } from './merge-scan-reduce/merge-scan-reduce.component';
+import { ProductsComponent } from './products/products.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { MergeScanReduceComponent } from './merge-scan-reduce/merge-scan-reduce.
     AuthComponent,
     NavbarComponent,
     AutocompleteComponent,
-    MergeScanReduceComponent
+    MergeScanReduceComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,
