@@ -1,5 +1,5 @@
 <div class="card m-2 c">
-  <div class="card-body">
+  <div class="card-body" *ngIf="personne">
     <img src="assets/images/{{personne.path|defaultImage}}" class="rounded-circle" height="100px" width="100px">
     <div class="mb-3">
       <label class="form-label">Name:</label>

@@ -13,11 +13,12 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { CvPageComponent } from './cv-page/cv-page.component';
 import {ROUTING} from "./app.routes";
 import { AuthComponent } from './auth/auth.component';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AuthService } from './services/auth.service';
+import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AuthService } from './services/auth.service';
     EmbaucheComponent,
     CvPageComponent,
     AuthComponent,
-    NavbarComponent
+    NavbarComponent,
+    AutocompleteComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +42,7 @@ import { AuthService } from './services/auth.service';
     ROUTING,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    ReactiveFormsModule,
   ],
   providers: [
     AuthService,

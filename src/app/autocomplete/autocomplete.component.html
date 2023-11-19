@@ -1,0 +1,9 @@
+<div class="custom-dropdown">
+  <input type="text" [formControl]="searchControl" placeholder="Search..." class="form-control"
+         (focus)="showOptions = true" (blur)="showOptions = false">
+  <ul *ngIf="showOptions">
+    <li *ngFor="let personne of suggestions" (mousedown)="onSelect(personne)">
+      {{ personne.name }} {{ personne.firstname }}
+    </li>
+  </ul>
+</div>

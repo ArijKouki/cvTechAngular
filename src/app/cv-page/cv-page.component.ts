@@ -10,7 +10,7 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrl: './cv-page.component.css'
 })
 export class CvPageComponent implements OnInit{
-  personne!: Personne;
+  personne: Personne|null=null;
 
   constructor(
     private cvService :CvService,

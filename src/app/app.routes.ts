@@ -6,9 +6,9 @@ import { NgModule } from '@angular/core';
 
 const APP_ROUTING: Routes = [
   { path: 'cv/:id', component: CvPageComponent },
-  { path: '', component: CvComponent },
   { path: 'cv', component: CvComponent },
-  { path: 'auth' , component: AuthComponent}
+  { path: 'auth' , component: AuthComponent},
+  { path: '', component: CvComponent }
 ]
 
 export const ROUTING =RouterModule.forRoot(APP_ROUTING);

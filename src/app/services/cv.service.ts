@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Personne} from "../model/Personne";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {catchError, Observable, of, tap} from "rxjs";
 
 @Injectable({
@@ -13,16 +13,21 @@ export class CvService {
   private personnes:Personne[]=[];
 
 
+  getPersonnes(filter?: any): Observable<Personne[]> {
+    let params = new HttpParams();
+    if (filter) {
+      params = params.set('filter', JSON.stringify(filter));
+    }
 
-  getPersonnes(): Observable<Personne[]> {
-    return this.http.get<Personne[]>(this.apiUrl).pipe(
-      tap(data => this.personnes = data),
-      catchError(error => {
-        //console.error('Error fetching data from the API:', error);
+    return this.http.get<Personne[]>(this.apiUrl, { params }).pipe(
+      tap((data) => (this.personnes = data)),
+      catchError((error) => {
+        console.error('Error fetching data from the API:', error);
         return of(this.getFakePersonnes());
       })
     );
   }
+
   getFakePersonnes(){
     return [
       new Personne(1, 'Kouki', 'Arij', 21, 'Arij-Kouki.jpg', 43562245, 'Software engineer'),
