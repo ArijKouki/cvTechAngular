@@ -18,7 +18,7 @@ export class CvService {
     return this.http.get<Personne[]>(this.apiUrl).pipe(
       tap(data => this.personnes = data),
       catchError(error => {
-        console.error('Error fetching data from the API:', error);
+        //console.error('Error fetching data from the API:', error);
         return of(this.getFakePersonnes());
       })
     );
