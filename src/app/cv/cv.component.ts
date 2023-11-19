@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Personne} from "../model/Personne";
-import {CvService} from "../cv.service";
+import {CvService} from "../services/cv.service";
 import {Observable, of} from "rxjs";
 
 @Component({

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Personne} from "../model/Personne";
-import {EmbaucheService} from "../embauche.service";
+import {EmbaucheService} from "../services/embauche.service";
 
 @Component({
   selector: 'app-embauche',
@@ -9,7 +9,6 @@ import {EmbaucheService} from "../embauche.service";
 })
 export class EmbaucheComponent implements OnInit{
   personnes: Personne[]=[];
-  defaultImage: String = ""
   constructor(private embaucheService:EmbaucheService) {
   }
 

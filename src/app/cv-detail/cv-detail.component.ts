@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Personne} from "../model/Personne";
-import {EmbaucheService} from "../embauche.service";
+import {EmbaucheService} from "../services/embauche.service";
 
 @Component({
   selector: 'app-cv-detail',

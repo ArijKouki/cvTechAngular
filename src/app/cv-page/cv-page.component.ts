@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Personne} from "../model/Personne";
-import {CvService} from "../cv.service";
-import {EmbaucheService} from "../embauche.service";
+import {CvService} from "../services/cv.service";
+import {EmbaucheService} from "../services/embauche.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({

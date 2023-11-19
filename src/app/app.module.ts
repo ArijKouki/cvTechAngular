@@ -7,7 +7,7 @@ import { CvComponent } from './cv/cv.component';
 import { CvDetailComponent } from './cv-detail/cv-detail.component';
 import { CvListComponent } from './cv-list/cv-list.component';
 import { CvItemComponent } from './cv-item/cv-item.component';
-import { DefaultImagePipe } from './default-image.pipe';
+import { DefaultImagePipe } from './pipes/default-image.pipe';
 import { EmbaucheComponent } from './embauche/embauche.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import { CvPageComponent } from './cv-page/cv-page.component';
