@@ -22,6 +22,7 @@ import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { MergeScanReduceComponent } from './merge-scan-reduce/merge-scan-reduce.component';
 import { ProductsComponent } from './products/products.component';
 import {CvResolver} from "./resolvers/cv.resolver";
+import { MasterDetailComponent } from './master-detail/master-detail.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {CvResolver} from "./resolvers/cv.resolver";
     NavbarComponent,
     AutocompleteComponent,
     MergeScanReduceComponent,
-    ProductsComponent
+    ProductsComponent,
+    MasterDetailComponent
   ],
   imports: [
     BrowserModule,
