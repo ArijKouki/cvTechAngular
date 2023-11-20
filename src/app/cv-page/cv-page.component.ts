@@ -15,23 +15,15 @@ export class CvPageComponent implements OnInit{
   constructor(
     private cvService :CvService,
     private embaucheService: EmbaucheService,
-    private activatedroute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private router: Router
   ) {
   }
 
   ngOnInit() {
-    this.activatedroute.params.subscribe(params => {
-        const id = params['id'];
-        this.cvService.getPersonneById(id).subscribe(
-          personne => {
-            if (personne) {
-              this.personne = personne;
-            }
-          }
-        )
-      }
-    )
+    this.activatedRoute.data.subscribe(data => {
+      this.personne = data['personne'];
+    });
 
   }
 

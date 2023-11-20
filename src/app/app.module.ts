@@ -21,6 +21,7 @@ import { AuthService } from './services/auth.service';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { MergeScanReduceComponent } from './merge-scan-reduce/merge-scan-reduce.component';
 import { ProductsComponent } from './products/products.component';
+import {CvResolver} from "./resolvers/cv.resolver";
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { ProductsComponent } from './products/products.component';
   ],
   providers: [
     AuthService,
-    provideClientHydration()
+    provideClientHydration(),
+    CvResolver
   ],
   bootstrap: [AppComponent]
 })

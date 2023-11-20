@@ -5,14 +5,25 @@ import {RouterModule, Routes} from "@angular/router";
 import { NgModule } from '@angular/core';
 import {MergeScanReduceComponent} from "./merge-scan-reduce/merge-scan-reduce.component";
 import {ProductsComponent} from "./products/products.component";
+import { CvResolver } from './resolvers/cv.resolver';
+import {CvPageResolver} from "./resolvers/cv-page.resolver";
 
 const APP_ROUTING: Routes = [
-  { path: 'cv/:id', component: CvPageComponent },
-  { path: 'cv', component: CvComponent },
+  { path: 'cv/:id',
+    component: CvPageComponent,
+    resolve: { personne: CvPageResolver }
+  },
+  { path: 'cv',
+    component: CvComponent,
+    resolve: {personnes: CvResolver,}
+  },
   { path: 'auth' , component: AuthComponent},
   { path: 'products' , component: ProductsComponent},
   { path: 'msr' , component: MergeScanReduceComponent},
-  { path: '', component: CvComponent }
+  { path: '',
+    component: CvComponent,
+    resolve: {personnes: CvResolver}
+  }
 ]
 
 export const ROUTING =RouterModule.forRoot(APP_ROUTING);
