@@ -3,6 +3,7 @@ import {FormControl} from "@angular/forms";
 import {CvService} from "../services/cv.service";
 import {Router} from "@angular/router";
 import {Personne} from "../model/Personne";
+import {debounceTime, filter, switchMap} from "rxjs";
 
 @Component({
   selector: 'app-autocomplete',
@@ -18,13 +19,16 @@ export class AutocompleteComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.searchControl.valueChanges.subscribe((searchTerm: string) => {
-      this.cvService.getPersonnes({ where: { name: { like: `%${searchTerm}%` } } })
-        .subscribe((results: any[]) => {
-          this.suggestions = results;
-        });
+    this.searchControl.valueChanges.pipe(
+      debounceTime(300),
+      filter((searchTerm: string) => searchTerm.length >= 3),
+      switchMap((searchTerm: string) => this.cvService.getPersonnes({ where: { name: { like: `%${searchTerm}%` } } }))
+    ).subscribe((results: any[]) => {
+      this.suggestions = results;
+      console.log(results);
     });
   }
+
 
   onSelect(personne: Personne) {
     this.router.navigateByUrl(`/cv/${personne.id}`);

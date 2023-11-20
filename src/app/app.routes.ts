@@ -21,9 +21,16 @@ const APP_ROUTING: Routes = [
   { path: 'auth' , component: AuthComponent},
   { path: 'products' , component: ProductsComponent},
   { path: 'msr' , component: MergeScanReduceComponent},
-  { path: 'md' ,
+
+  { path: 'list' ,
     component: MasterDetailComponent,
-    resolve: {personnes: CvResolver,}
+    resolve: {personnes: CvResolver},
+    children:[
+        { path: ':id' ,
+          component: CvPageComponent,
+          resolve: {personne: CvPageResolver}
+        },
+    ]
   },
   { path: '',
     component: CvComponent,
