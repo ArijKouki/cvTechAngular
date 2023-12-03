@@ -9,6 +9,7 @@ import { CvResolver } from './resolvers/cv.resolver';
 import {CvPageResolver} from "./resolvers/cv-page.resolver";
 import {MasterDetailComponent} from "./master-detail/master-detail.component";
 import {AddCvComponent} from "./add-cv/add-cv.component";
+import {CanDeactivateGuard} from "./guards/CanDeactivateGuard";
 
 const APP_ROUTING: Routes = [
   { path: 'cv/:id',
@@ -35,6 +36,7 @@ const APP_ROUTING: Routes = [
   },
   { path: 'add',
     component: AddCvComponent,
+    canDeactivate: [CanDeactivateGuard],
   },
   { path: '',
     component: CvComponent,

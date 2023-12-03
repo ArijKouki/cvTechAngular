@@ -24,6 +24,7 @@ import { ProductsComponent } from './products/products.component';
 import {CvResolver} from "./resolvers/cv.resolver";
 import { MasterDetailComponent } from './master-detail/master-detail.component';
 import { AddCvComponent } from './add-cv/add-cv.component';
+import {CanDeactivateGuard} from "./guards/CanDeactivateGuard";
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { AddCvComponent } from './add-cv/add-cv.component';
   providers: [
     AuthService,
     provideClientHydration(),
-    CvResolver
+    CvResolver,
+    CanDeactivateGuard
   ],
   bootstrap: [AppComponent]
 })

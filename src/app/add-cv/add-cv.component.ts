@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import {Personne} from "../model/Personne";
 import {CvService} from "../services/cv.service";
 import {Router} from "@angular/router";
+import {CanComponentDeactivate} from "../guards/CanDeactivateGuard";
 
 @Component({
   selector: 'app-add-cv',
   templateUrl: './add-cv.component.html',
   styleUrl: './add-cv.component.css'
 })
-export class AddCvComponent {
+export class AddCvComponent implements CanComponentDeactivate{
   newPerson: Personne = new Personne();
 
   constructor(private cvService: CvService,private router: Router) {}
@@ -24,5 +25,16 @@ export class AddCvComponent {
       }
     );
   }
+
+  canDeactivate(): boolean {
+    const fieldsFilled = Object.values(this.newPerson).some(value => !!value);
+
+    if (fieldsFilled) {
+      return window.confirm('Are you sure you want to leave? Your changes may be lost.');
+    }
+
+    return true;
+  }
+
 
 }
