@@ -17,8 +17,9 @@ export class AddCvComponent implements CanComponentDeactivate{
   onSubmit(): void {
     console.log(this.newPerson)
     this.cvService.createPersonne(this.newPerson).subscribe(
-      () => {
-        //this.router.navigate(['/cv']);
+      (response: Personne) => {
+        this.newPerson.id = response.id;
+        this.router.navigate(['/cv']);
       },
       (error) => {
         console.error('Error adding new person:', error);

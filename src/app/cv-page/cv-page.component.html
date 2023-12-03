@@ -1,26 +1,25 @@
 <div class="card m-2 c">
   <div class="card-body" *ngIf="personne">
-    <img src="assets/images/{{personne.path|defaultImage}}" class="rounded-circle" height="100px" width="100px">
-    <div class="mb-3">
-      <label class="form-label">Name:</label>
-      <h6>{{personne.name}}</h6>
+    <form [formGroup]="personneForm">
+      <label>Name:</label>
+      <input formControlName="name" class="form-control" />
+
+      <label>Firstname:</label>
+      <input formControlName="firstname" class="form-control" />
+
+      <label>Job:</label>
+      <input formControlName="job" class="form-control" />
+
+      <label>Age:</label>
+      <input formControlName="age" class="form-control" />
+
+      <label>Cin:</label>
+      <input formControlName="cin" class="form-control" />
+
+    </form>
+    <div class="flex-row mt-2">
+      <button (click)="updatePersonne()" class="btn btn-success me-2" *ngIf="authService.user$ | async as user">Update</button>
+      <button (click)="deletePersonne()" class="btn btn-danger" *ngIf="authService.user$ | async as user">Delete</button>
     </div>
-    <div class="mb-3">
-      <label class="form-label">Firstname:</label>
-      <h6>{{personne.firstname}}</h6>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Job:</label>
-      <h6>{{personne.job}}</h6>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Age:</label>
-      <h6>{{personne.age}}</h6>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Cin:</label>
-      <h6>{{personne.cin}}</h6>
-    </div>
-    <button (click)="deletePersonne() " routerLink="" class="btn btn-danger">Delete</button>
   </div>
 </div>

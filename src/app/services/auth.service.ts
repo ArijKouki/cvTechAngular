@@ -1,25 +1,26 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {BehaviorSubject, map, Observable, tap} from 'rxjs';
 import { isPlatformBrowser } from '@angular/common';
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private userSubject: BehaviorSubject<User | null>;
+  private tokenSubject: BehaviorSubject<User | null>;
   user$: Observable<User | null>;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-    const storedUser = isPlatformBrowser(this.platformId) ? localStorage.getItem('currentUser') : null;
-    this.userSubject = new BehaviorSubject<User | null>(storedUser ? JSON.parse(storedUser) : null);
-    this.user$ = this.userSubject.asObservable();
+  constructor(@Inject(PLATFORM_ID) private platformId: Object,private http: HttpClient) {
+    const storedToken = isPlatformBrowser(this.platformId) ? localStorage.getItem('currentUser') : null;
+    this.tokenSubject = new BehaviorSubject<User | null>(storedToken ? { id: storedToken} : null);
+    this.user$ = this.tokenSubject.asObservable();
   }
 
   private getStoredUser(): User | null {
     try {
       if (isPlatformBrowser(this.platformId)) {
-        const storedUser = localStorage.getItem('currentUser');
-        return storedUser ? JSON.parse(storedUser) : null;
+        const storedToken = localStorage.getItem('currentUser');
+        return storedToken ? { id: storedToken}  : null;
       } else {
         return null;
       }
@@ -31,42 +32,51 @@ export class AuthService {
 
   loadUserState(): void {
     const storedUser = this.getStoredUser();
-    this.userSubject.next(storedUser);
+    this.tokenSubject.next(storedUser);
   }
 
-  login(user: User): void {
-    if (isPlatformBrowser(this.platformId)) {
-      try {
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        this.userSubject.next(user);
-      } catch (error) {
-        console.error('Error saving user to localStorage:', error);
-      }
-    }
+
+  login(email: string, password: string): Observable<any> {
+    const authenticationEndpoint = 'https://apilb.tridevs.net/api/Users/login';
+
+    return this.http.post<User>(authenticationEndpoint, { email, password }).pipe(
+      tap((response) => {
+        if (isPlatformBrowser(this.platformId)) {
+          try {
+            console.log(response)
+            localStorage.setItem('currentUser', response.id.toString());
+            const user: User = {
+              id: response.id
+            };
+            this.tokenSubject.next(user);
+          } catch (error) {
+            console.error('Error saving user to localStorage:', error);
+          }
+        }
+      })
+    );
   }
 
   logout(): void {
     if (isPlatformBrowser(this.platformId)) {
       try {
         localStorage.removeItem('currentUser');
-        this.userSubject.next(null);
+        this.tokenSubject.next(null);
       } catch (error) {
         console.error('Error removing user from localStorage:', error);
       }
     }
   }
 
-  isLoggedIn(): boolean {
-    return !!this.userSubject.value;
-  }
+  /*isLoggedIn(): Observable<boolean> {
+    return this.user$.pipe(
+      map(user => !!user)
+    );
+  }*/
+
 }
 
 export interface User {
-  id: number;
-  email: string;
+  id: string;
 }
 
-export class Users implements User {
-  id!: number;
-  email!: string;
-}

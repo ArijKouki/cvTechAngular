@@ -19,26 +19,15 @@ constructor(
   private router: Router
     ) {}
   onSubmit() {
-
-    const authenticationEndpoint = 'https://apilb.tridevs.net/api/Users/login';
-    this.http.post(authenticationEndpoint, this.user).subscribe(
-      (response: any) => {
-
-        console.log('Authentication successful!', response);
-
-
-        this.authService.login({
-          id: response.userId,
-          email: this.user.email,
-        });
-
-        this.router.navigate(['/']);
-
-      },
-      (error) => {
-        console.error('Authentication failed!', error);
-      }
-    );
-
+  this.authService.login(this.user.email,this.user.password).subscribe(
+    (response: any) => {
+      console.log('Authentication successful!', response);
+      this.router.navigate(['/']);
+    },
+    (error) => {
+      console.error('Authentication failed!', error);
+    }
+  );
   }
+
 }

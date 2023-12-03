@@ -15,7 +15,6 @@ export class CanDeactivateGuard
   canDeactivate(
     component: CanComponentDeactivate
   ): Observable<boolean> | Promise<boolean> | boolean {
-    console.log("CanDeactivateGuard")
     return component.canDeactivate ? component.canDeactivate() : true;
   }
 }
