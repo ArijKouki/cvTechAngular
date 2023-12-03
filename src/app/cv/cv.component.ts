@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Personne} from "../model/Personne";
 import {CvService} from "../services/cv.service";
-import {map, Observable, of} from "rxjs";
+import {map, Observable, of, share} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
@@ -15,7 +15,8 @@ constructor(private route: ActivatedRoute) {}
   selectedPersonne!: Personne;
 ngOnInit() {
   this.personnes$ = this.route.data.pipe(
-    map(data => data['personnes'])
+    map(data => data['personnes']),
+    share()
   );
 }
 

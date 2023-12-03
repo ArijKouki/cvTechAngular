@@ -1,4 +1,5 @@
 export class Personne{
+  private static lastId = 0;
   id:number;
   name:string;
   firstname:string;
@@ -6,8 +7,8 @@ export class Personne{
   path:string;
   cin:number;
   job:string;
-  constructor(id=0,name="",firstname="",age=0,path="",cin=1,job="") {
-    this.id=id;
+  constructor(name="",firstname="",age=0,path="",cin=1,job="") {
+    this.id=++Personne.lastId;
     this.name=name;
     this.firstname=firstname;
     this.age=age;

@@ -30,9 +30,9 @@ export class CvService {
 
   getFakePersonnes(){
     return [
-      new Personne(1, 'Kouki', 'Arij', 21, 'Arij-Kouki.jpg', 43562245, 'Software engineer'),
-      new Personne(2, 'Ben Ammar', 'Hamza', 21, 'hamza.jpg', 4647484, 'Software engineer'),
-      new Personne(3, 'Britney', 'Spears', 40, '', 4647484, 'Singer'),
+      new Personne( 'Kouki', 'Arij', 21, 'Arij-Kouki.jpg', 43562245, 'Software engineer'),
+      new Personne('Ben Ammar', 'Hamza', 21, 'hamza.jpg', 4647484, 'Software engineer'),
+      new Personne('Britney', 'Spears', 40, '', 4647484, 'Singer'),
     ];
   }
 
@@ -48,6 +48,18 @@ export class CvService {
       }),
       catchError(error => {
         console.error('Error deleting data from the API:', error);
+        return of(error);
+      })
+    );
+  }
+
+  createPersonne(personne: Personne): Observable<Personne> {
+    return this.http.post<Personne>(this.apiUrl, personne).pipe(
+      tap((newPersonne) => {
+        this.personnes.push(newPersonne);
+      }),
+      catchError((error) => {
+        console.error('Error creating new person:', error);
         return of(error);
       })
     );
