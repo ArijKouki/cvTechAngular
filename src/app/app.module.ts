@@ -3,28 +3,28 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CvComponent } from './cv/cv.component';
-import { CvDetailComponent } from './cv-detail/cv-detail.component';
-import { CvListComponent } from './cv-list/cv-list.component';
-import { CvItemComponent } from './cv-item/cv-item.component';
-import { DefaultImagePipe } from './pipes/default-image.pipe';
-import { EmbaucheComponent } from './embauche/embauche.component';
+import { CvComponent } from './cv/components/cvComp/cv.component';
+import { CvDetailComponent } from './cv/components/cv-detail/cv-detail.component';
+import { CvListComponent } from './cv/components/cv-list/cv-list.component';
+import { CvItemComponent } from './cv/components/cv-item/cv-item.component';
+import { DefaultImagePipe } from './cv/pipes/default-image.pipe';
+import { EmbaucheComponent } from './cv/components/embauche/embauche.component';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
-import { CvPageComponent } from './cv-page/cv-page.component';
+import { CvPageComponent } from './cv/components/cv-page/cv-page.component';
 import {ROUTING} from "./app.routes";
-import { AuthComponent } from './auth/auth.component';
+import { AuthComponent } from './auth/components/authComp/auth.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavbarComponent } from './navbar/navbar.component';
-import { AuthService } from './services/auth.service';
-import { AutocompleteComponent } from './autocomplete/autocomplete.component';
-import { MergeScanReduceComponent } from './merge-scan-reduce/merge-scan-reduce.component';
-import { ProductsComponent } from './products/products.component';
-import {CvResolver} from "./resolvers/cv.resolver";
-import { MasterDetailComponent } from './master-detail/master-detail.component';
-import { AddCvComponent } from './add-cv/add-cv.component';
-import {CanDeactivateGuard} from "./guards/CanDeactivateGuard";
+import { NavbarComponent } from './cv/components/navbar/navbar.component';
+import { AuthService } from './auth/services/auth.service';
+import { AutocompleteComponent } from './cv/components/autocomplete/autocomplete.component';
+import { MergeScanReduceComponent } from './cv/components/merge-scan-reduce/merge-scan-reduce.component';
+import { ProductsComponent } from './cv/components/products/products.component';
+import {CvResolver} from "./cv/resolvers/cv.resolver";
+import { MasterDetailComponent } from './cv/components/master-detail/master-detail.component';
+import { AddCvComponent } from './cv/components/add-cv/add-cv.component';
+import {CanDeactivateGuard} from "./cv/guards/CanDeactivateGuard";
 
 @NgModule({
   declarations: [
