@@ -43,34 +43,11 @@ export class CvService {
   }
 
 
-  deletePersonne(cvId: number|undefined): Observable<void> {
-    const deleteUrl = `${this.apiUrl}/${cvId}`;
-    let token:string | null=null;
-    if (isPlatformBrowser(this.platformId)) {
-      token = localStorage.getItem('currentUser');
-    }
-    const params = token ? new HttpParams().set('access_token', token) : undefined;
 
-    return this.http.delete<void>(deleteUrl, { params }).pipe(
-
-        tap(() => {
-          this.personnes = this.personnes.filter(person => person.id !== cvId);
-        }),
-        catchError(error => {
-          console.error('Error deleting data from the API:', error);
-          return of(error);
-        })
-      );
-  }
 
   createPersonne(personne: Personne): Observable<Personne> {
-    let token:string | null=null;
-    if (isPlatformBrowser(this.platformId)) {
-      token = localStorage.getItem('currentUser');
-    }
-    const params = token ? new HttpParams().set('access_token', token) : undefined;
 
-    return this.http.post<Personne>(this.apiUrl, personne,{ params }).pipe(
+    return this.http.post<Personne>(this.apiUrl, personne).pipe(
         tap((newPersonne) => {
           this.personnes.push(newPersonne);
         }),
@@ -86,16 +63,9 @@ export class CvService {
   }
 
 
-
   updatePersonne(cvId: number|undefined,personne:Personne): Observable<Personne> {
     const updateUrl = `${this.apiUrl}/${cvId}`;
-    let token: string | null = null;
-    if (isPlatformBrowser(this.platformId)) {
-      token = localStorage.getItem('currentUser');
-    }
-    const params = token ? new HttpParams().set('access_token', token) : undefined;
-
-    return this.http.patch<Personne>(updateUrl,personne,{ params }).pipe(
+    return this.http.patch<Personne>(updateUrl,personne).pipe(
       tap((newPersonne) => {
         this.personnes.push(newPersonne);
       }),
@@ -108,6 +78,21 @@ export class CvService {
       })
     );
 
+  }
+
+  deletePersonne(cvId: number|undefined): Observable<void> {
+    const deleteUrl = `${this.apiUrl}/${cvId}`;
+
+    return this.http.delete<void>(deleteUrl).pipe(
+
+      tap(() => {
+        this.personnes = this.personnes.filter(person => person.id !== cvId);
+      }),
+      catchError(error => {
+        console.error('Error deleting data from the API:', error);
+        return of(error);
+      })
+    );
   }
 
 

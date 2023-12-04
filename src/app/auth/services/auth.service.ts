@@ -73,6 +73,10 @@ export class AuthService {
       map(user => !!user)
     );
   }*/
+  getToken(): string | null {
+    const storedUser = this.getStoredUser();
+    return storedUser ? storedUser.id : null;
+  }
 
 }
 

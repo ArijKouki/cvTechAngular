@@ -9,7 +9,7 @@ import { CvListComponent } from './cv/components/cv-list/cv-list.component';
 import { CvItemComponent } from './cv/components/cv-item/cv-item.component';
 import { DefaultImagePipe } from './cv/pipes/default-image.pipe';
 import { EmbaucheComponent } from './cv/components/embauche/embauche.component';
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from "@angular/common/http";
 import { CvPageComponent } from './cv/components/cv-page/cv-page.component';
 import {ROUTING} from "./app.routes";
 import { AuthComponent } from './auth/components/authComp/auth.component';
@@ -25,6 +25,7 @@ import {CvResolver} from "./cv/resolvers/cv.resolver";
 import { MasterDetailComponent } from './cv/components/master-detail/master-detail.component';
 import { AddCvComponent } from './cv/components/add-cv/add-cv.component';
 import {CanDeactivateGuard} from "./cv/guards/CanDeactivateGuard";
+import {AuthInterceptor} from "./auth/interceptors/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -58,7 +59,12 @@ import {CanDeactivateGuard} from "./cv/guards/CanDeactivateGuard";
     AuthService,
     provideClientHydration(),
     CvResolver,
-    CanDeactivateGuard
+    CanDeactivateGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -11,11 +11,13 @@ import {CanComponentDeactivate} from "../../guards/CanDeactivateGuard";
 })
 export class AddCvComponent implements CanComponentDeactivate{
   newPerson: Personne = new Personne();
+  formSubmitted: boolean = false;
 
   constructor(private cvService: CvService,private router: Router) {}
 
   onSubmit(): void {
     console.log(this.newPerson)
+    this.formSubmitted = true;
     this.cvService.createPersonne(this.newPerson).subscribe(
       (response: Personne) => {
         this.newPerson.id = response.id;
@@ -28,6 +30,10 @@ export class AddCvComponent implements CanComponentDeactivate{
   }
 
   canDeactivate(): boolean {
+    if (this.formSubmitted) {
+      return true;
+    }
+
     const fieldsFilled = Object.values(this.newPerson).some(value => !!value);
 
     if (fieldsFilled) {

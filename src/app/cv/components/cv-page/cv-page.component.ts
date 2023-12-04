@@ -71,7 +71,7 @@ export class CvPageComponent implements OnInit{
     if (this.personne) {
       this.cvService.deletePersonne(this.personne.id).subscribe(
         () => {
-          //this.router.navigate(['/cv']);
+          this.router.navigate(['/cv']);
         },
         error => {
           console.error('Error deleting CV:', error);
